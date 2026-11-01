@@ -41,7 +41,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
@@ -51,6 +50,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.dessertrelease.R
 import com.example.dessertrelease.data.local.LocalDessertReleaseData
+import com.example.dessertrelease.ui.theme.AppTheme
 import com.example.dessertrelease.ui.theme.DessertReleaseTheme
 
 /*
@@ -100,9 +100,9 @@ private fun DessertReleaseScreen(
     ) { innerPadding ->
         val modifier = Modifier
             .padding(
-                top = dimensionResource(R.dimen.padding_medium),
-                start = dimensionResource(R.dimen.padding_medium),
-                end = dimensionResource(R.dimen.padding_medium),
+                top = AppTheme.dimensions.paddingMedium,
+                start = AppTheme.dimensions.paddingMedium,
+                end = AppTheme.dimensions.paddingMedium,
             )
         if (isLinearLayout) {
             DessertReleaseLinearLayout(
@@ -126,7 +126,7 @@ fun DessertReleaseLinearLayout(
     LazyColumn(
         modifier = modifier,
         contentPadding = contentPadding,
-        verticalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.padding_small)),
+        verticalArrangement = Arrangement.spacedBy(AppTheme.dimensions.paddingSmall),
     ) {
         items(
             items = LocalDessertReleaseData.dessertReleases,
@@ -142,7 +142,7 @@ fun DessertReleaseLinearLayout(
                     text = dessert,
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(dimensionResource(R.dimen.padding_medium)),
+                        .padding(AppTheme.dimensions.paddingMedium),
                     textAlign = TextAlign.Center
                 )
             }
@@ -154,13 +154,13 @@ fun DessertReleaseLinearLayout(
 fun DessertReleaseGridLayout(
     modifier: Modifier = Modifier,
     contentPadding: PaddingValues = PaddingValues(0.dp)
-    ) {
+) {
     LazyVerticalGrid(
         modifier = modifier,
         columns = GridCells.Fixed(3),
         contentPadding = contentPadding,
-        verticalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.padding_medium)),
-        horizontalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.padding_medium))
+        verticalArrangement = Arrangement.spacedBy(AppTheme.dimensions.paddingMedium),
+        horizontalArrangement = Arrangement.spacedBy(AppTheme.dimensions.paddingMedium)
     ) {
         items(
             items = LocalDessertReleaseData.dessertReleases,
@@ -180,7 +180,7 @@ fun DessertReleaseGridLayout(
                     modifier = Modifier
                         .fillMaxHeight()
                         .wrapContentHeight(Alignment.CenterVertically)
-                        .padding(dimensionResource(R.dimen.padding_small))
+                        .padding(AppTheme.dimensions.paddingSmall)
                         .align(Alignment.CenterHorizontally),
                     textAlign = TextAlign.Center
                 )
